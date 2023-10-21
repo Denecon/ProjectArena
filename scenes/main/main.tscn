@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3tlfjegls3xe"]
+[gd_scene load_steps=10 format=3 uid="uid://d3tlfjegls3xe"]
 
 [ext_resource type="PackedScene" uid="uid://lu3rgdcqo0vs" path="res://scenes/game_object/player/player.tscn" id="2_d24o0"]
 [ext_resource type="Texture2D" uid="uid://dsxokf21d8x3b" path="res://assets/background-image-checkers-chequered-chec.webp" id="2_prdvt"]
@@ -22,6 +22,13 @@ texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yp6yg"]
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ectn0"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_31fca"]
+vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -37,6 +44,16 @@ shadow_enabled = true
 transform = Transform3D(0.999998, 0.00168586, -0.000451724, 0, 0.258819, 0.965926, 0.00174533, -0.965924, 0.258819, 0, 25, 8)
 
 [node name="Platform" type="MeshInstance3D" parent="."]
-transform = Transform3D(121.354, 0, 0, 0, 1, 0, 0, 0, 117.148, 0, -1.30179, 0)
+transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.30179, 0)
 material_override = SubResource("StandardMaterial3D_e3xxh")
+transparency = 0.6
 mesh = SubResource("PlaneMesh_yp6yg")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ectn0")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Platform"]
+navigation_mesh = SubResource("NavigationMesh_31fca")

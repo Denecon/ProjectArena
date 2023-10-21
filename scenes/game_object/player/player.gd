@@ -3,16 +3,31 @@ extends CharacterBody3D
 @export var movement_speed: float = 4.0
 @export var navigation_agent: NavigationAgent3D
 @export var player_mesh: MeshInstance3D
+
+@export var camera: Camera3D
+
+@export var multiplayer_synchromizer : MultiplayerSynchronizer
+
 var movement_delta: float
 
 func _ready() -> void:
+	multiplayer_synchromizer.set_multiplayer_authority(str(name).to_int())
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		return
+	
+	camera.current = true
 
 func _input(event):
+	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		return
 	if Input.is_action_just_pressed("mouse_button_1"):
 		screen_point_to_ray()
 
 func _physics_process(delta):
+	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		return
+	
 	if navigation_agent.is_navigation_finished():
 		return
 
@@ -30,7 +45,6 @@ func screen_point_to_ray():
 	var space_state = get_world_3d().direct_space_state
 	
 	var mouse_position = get_viewport().get_mouse_position()
-	var camera = get_tree().root.get_camera_3d()
 	var ray_origin = camera.project_ray_origin(mouse_position)
 	var ray_end = ray_origin + camera.project_ray_normal(mouse_position) * 2000
 	

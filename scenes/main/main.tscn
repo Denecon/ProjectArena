@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3tlfjegls3xe"]
+[gd_scene load_steps=11 format=3 uid="uid://d3tlfjegls3xe"]
 
+[ext_resource type="Script" path="res://scenes/manager/main_manager.gd" id="1_dcsau"]
 [ext_resource type="PackedScene" uid="uid://lu3rgdcqo0vs" path="res://scenes/game_object/player/player.tscn" id="2_d24o0"]
 [ext_resource type="Texture2D" uid="uid://dsxokf21d8x3b" path="res://assets/background-image-checkers-chequered-chec.webp" id="2_prdvt"]
 
@@ -30,6 +31,8 @@ vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
 polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_dcsau")
+player_scene = ExtResource("2_d24o0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d6p1r")
@@ -37,12 +40,6 @@ environment = SubResource("Environment_d6p1r")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("2_d24o0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.3, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.999998, 0.00168586, -0.000451724, 0, 0.258819, 0.965926, 0.00174533, -0.965924, 0.258819, 0, 25, 8)
 
 [node name="Platform" type="MeshInstance3D" parent="."]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.30179, 0)
@@ -58,3 +55,11 @@ shape = SubResource("ConcavePolygonShape3D_ectn0")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Platform"]
 navigation_mesh = SubResource("NavigationMesh_31fca")
+
+[node name="SpawnLocations" type="Node3D" parent="."]
+
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -3.3, 0)
+
+[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3.3, 0)

@@ -19,6 +19,18 @@ func _ready():
 	join_btn.connect("pressed", on_join_pressed)
 	start_game_btn.connect("pressed", on_start_game_pressed)
 
+@rpc("any_peer")
+func send_player_information(name, id):
+	if not GameManager.connected_players.has(id):
+		GameManager.connected_players[id] = {
+			"name" : name,
+			"id" : id
+		}
+	
+	if multiplayer.is_server():
+		for i in GameManager.connected_players:
+			send_player_information.rpc(GameManager.connected_players[i].name, i)
+
 @rpc("any_peer", "call_local")
 func start_game():
 	get_tree().root.add_child(scene.instantiate())
@@ -32,6 +44,7 @@ func player_disconnected(id):
 
 func connected_to_server():
 	print("Connected To Server!")
+	send_player_information.rpc_id(1, $VBoxContainer/HBoxContainer2/LineEdit.text, multiplayer.get_unique_id())
 
 func connection_failed():
 	print("Connection Failed")
@@ -47,6 +60,7 @@ func on_host_pressed():
 	multiplayer.set_multiplayer_peer(peer)
 	
 	print("Waitning For Players!")
+	send_player_information($VBoxContainer/HBoxContainer2/LineEdit.text, multiplayer.get_unique_id())
 
 func on_join_pressed():
 	var peer = ENetMultiplayerPeer.new()

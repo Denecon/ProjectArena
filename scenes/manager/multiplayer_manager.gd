@@ -20,10 +20,10 @@ func _ready():
 	start_game_btn.connect("pressed", on_start_game_pressed)
 
 @rpc("any_peer")
-func send_player_information(name, id):
+func send_player_information(_name, id):
 	if not GameManager.connected_players.has(id):
 		GameManager.connected_players[id] = {
-			"name" : name,
+			"name" : _name,
 			"id" : id
 		}
 	

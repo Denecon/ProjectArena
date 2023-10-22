@@ -53,6 +53,8 @@ func screen_point_to_ray():
 	
 	var result = space_state.intersect_ray(ray_query)
 	
+	if result == {}:
+		return global_position
 	var target_position = result.position
 	set_movement_target(target_position)
 

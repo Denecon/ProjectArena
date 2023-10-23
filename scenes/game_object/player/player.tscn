@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://lu3rgdcqo0vs"]
+[gd_scene load_steps=10 format=3 uid="uid://lu3rgdcqo0vs"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_wwovv"]
 [ext_resource type="PackedScene" uid="uid://c8602lx6fw3or" path="res://scenes/component/health_component.tscn" id="2_is44q"]
+[ext_resource type="PackedScene" uid="uid://c2c4emgqxv6r3" path="res://scenes/class/mage/mage_class.tscn" id="3_l4gxt"]
 [ext_resource type="PackedScene" uid="uid://clqmhkhhvtd3v" path="res://scenes/component/hurtbox_component.tscn" id="4_y8ous"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cm64c"]
@@ -25,6 +26,7 @@ properties/1/sync = true
 properties/1/watch = false
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent", "player_mesh", "camera", "multiplayer_synchromizer")]
+collision_layer = 2
 script = ExtResource("1_wwovv")
 navigation_agent = NodePath("NavigationAgent3D")
 player_mesh = NodePath("PlayerMesh")
@@ -33,8 +35,14 @@ multiplayer_synchromizer = NodePath("MultiplayerSynchronizer")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is44q")]
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_y8ous")]
+[node name="Classes" type="Node" parent="."]
+
+[node name="MageClass" parent="Classes" node_paths=PackedStringArray("player_owner") instance=ExtResource("3_l4gxt")]
+player_owner = NodePath("../..")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "player_owner") instance=ExtResource("4_y8ous")]
 health_component = NodePath("../HealthComponent")
+player_owner = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

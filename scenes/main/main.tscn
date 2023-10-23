@@ -56,6 +56,8 @@ shape = SubResource("ConcavePolygonShape3D_ectn0")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Platform"]
 navigation_mesh = SubResource("NavigationMesh_31fca")
 
+[node name="Players" type="Node3D" parent="." groups=["Players"]]
+
 [node name="SpawnLocations" type="Node3D" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
@@ -63,3 +65,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -3.3, 0)
 
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3.3, 0)
+
+[node name="AbilityPool" type="Node3D" parent="." groups=["AbilityPool"]]

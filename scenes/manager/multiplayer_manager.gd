@@ -7,6 +7,9 @@ extends Control
 @export var join_btn: Button
 @export var start_game_btn: Button
 
+@export var player_name: LineEdit
+@export var player_team: LineEdit
+
 @export var scene: PackedScene
 
 func _ready():
@@ -20,16 +23,17 @@ func _ready():
 	start_game_btn.connect("pressed", on_start_game_pressed)
 
 @rpc("any_peer")
-func send_player_information(_name, id):
+func send_player_information(_player_name, _player_team, id):
 	if not GameManager.connected_players.has(id):
 		GameManager.connected_players[id] = {
-			"name" : _name,
+			"name" : _player_name,
+			"team": _player_team,
 			"id" : id
 		}
 	
 	if multiplayer.is_server():
 		for i in GameManager.connected_players:
-			send_player_information.rpc(GameManager.connected_players[i].name, i)
+			send_player_information.rpc(GameManager.connected_players[i].name, GameManager.connected_players[i].team, i)
 
 @rpc("any_peer", "call_local")
 func start_game():
@@ -44,7 +48,7 @@ func player_disconnected(id):
 
 func connected_to_server():
 	print("Connected To Server!")
-	send_player_information.rpc_id(1, $VBoxContainer/HBoxContainer2/LineEdit.text, multiplayer.get_unique_id())
+	send_player_information.rpc_id(1, player_name.text, player_team.text.to_int(), multiplayer.get_unique_id())
 
 func connection_failed():
 	print("Connection Failed")
@@ -60,7 +64,7 @@ func on_host_pressed():
 	multiplayer.set_multiplayer_peer(peer)
 	
 	print("Waitning For Players!")
-	send_player_information($VBoxContainer/HBoxContainer2/LineEdit.text, multiplayer.get_unique_id())
+	send_player_information(player_name.text, player_team.text.to_int(), multiplayer.get_unique_id())
 
 func on_join_pressed():
 	var peer = ENetMultiplayerPeer.new()

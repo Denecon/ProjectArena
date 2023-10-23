@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var movement_speed: float = 4.0
 @export var navigation_agent: NavigationAgent3D
@@ -8,7 +9,12 @@ extends CharacterBody3D
 
 @export var multiplayer_synchromizer : MultiplayerSynchronizer
 
+var team: int
+
 var movement_delta: float
+
+var mouse_positon: Vector3
+
 
 func _ready() -> void:
 	multiplayer_synchromizer.set_multiplayer_authority(str(name).to_int())
@@ -22,11 +28,13 @@ func _input(event):
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
 	if Input.is_action_just_pressed("mouse_button_1"):
-		screen_point_to_ray()
+		set_movement_target(mouse_positon)
 
 func _physics_process(delta):
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
+	
+	mouse_positon = screen_point_to_ray()
 	
 	if navigation_agent.is_navigation_finished():
 		return
@@ -55,8 +63,7 @@ func screen_point_to_ray():
 	
 	if result == {}:
 		return global_position
-	var target_position = result.position
-	set_movement_target(target_position)
+	return result.position
 
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)

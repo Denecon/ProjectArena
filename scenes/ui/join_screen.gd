@@ -24,16 +24,16 @@ func _ready():
 
 @rpc("any_peer")
 func send_player_information(_player_name, _player_team, id):
-	if not GameManager.connected_players.has(id):
-		GameManager.connected_players[id] = {
+	if not ServerManager.connected_players.has(id):
+		ServerManager.connected_players[id] = {
 			"name" : _player_name,
 			"team": _player_team,
 			"id" : id
 		}
 	
 	if multiplayer.is_server():
-		for i in GameManager.connected_players:
-			send_player_information.rpc(GameManager.connected_players[i].name, GameManager.connected_players[i].team, i)
+		for i in ServerManager.connected_players:
+			send_player_information.rpc(ServerManager.connected_players[i].name, ServerManager.connected_players[i].team, i)
 
 @rpc("any_peer", "call_local")
 func start_game():

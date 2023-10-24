@@ -1,12 +1,15 @@
 extends CharacterBody3D
 class_name Player
 
+signal basic_attack(dict)
+
 @export var movement_speed: float = 4.0
 @export var navigation_agent: NavigationAgent3D
 @export var player_mesh: MeshInstance3D
 
 @export var camera: Camera3D
 
+@export var player_class : ClassManager
 @export var multiplayer_synchromizer : MultiplayerSynchronizer
 
 var team: int
@@ -15,26 +18,35 @@ var movement_delta: float
 
 var mouse_positon: Vector3
 
-
 func _ready() -> void:
 	multiplayer_synchromizer.set_multiplayer_authority(str(name).to_int())
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
 	
+	InputManager.connect("mouse_0", on_mouse_button_0_pressed)
+	InputManager.connect("mouse_1", on_mouse_button_1_pressed)
+	
 	camera.current = true
 
-func _input(event):
-	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		return
-	if Input.is_action_just_pressed("mouse_button_1"):
+func on_mouse_button_0_pressed():
+	print(screen_point_to_ray())
+
+func on_mouse_button_1_pressed():
+	var ray_result = screen_point_to_ray()
+	if str(ray_result.collider.name).is_valid_int():
+		if team == ray_result.collider.team:
+			set_movement_target(mouse_positon)
+		else:
+			basic_attack.emit(ray_result)
+	else:
 		set_movement_target(mouse_positon)
 
 func _physics_process(delta):
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
 	
-	mouse_positon = screen_point_to_ray()
+	mouse_positon = screen_point_to_ray().position if screen_point_to_ray() != {} else global_position
 	
 	if navigation_agent.is_navigation_finished():
 		return
@@ -59,11 +71,7 @@ func screen_point_to_ray():
 	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	ray_query.collide_with_areas = true
 	
-	var result = space_state.intersect_ray(ray_query)
-	
-	if result == {}:
-		return global_position
-	return result.position
+	return space_state.intersect_ray(ray_query)
 
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)

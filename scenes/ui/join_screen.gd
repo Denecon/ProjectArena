@@ -23,10 +23,10 @@ func _ready():
 	start_game_btn.connect("pressed", on_start_game_pressed)
 
 @rpc("any_peer")
-func send_player_information(_player_name, _player_team, id):
+func send_player_information(_player_name: String, _player_team, id):
 	if not ServerManager.connected_players.has(id):
 		ServerManager.connected_players[id] = {
-			"name" : _player_name,
+			"name" : _player_name.substr(0, 16),
 			"team": _player_team,
 			"id" : id
 		}

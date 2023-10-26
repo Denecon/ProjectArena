@@ -6,6 +6,7 @@ func _ready():
 	var index = 0
 	for i in ServerManager.connected_players:
 		var current_player = player_scene.instantiate() as Player
+		current_player.player_name.text = ServerManager.connected_players[i].name
 		current_player.name = str(ServerManager.connected_players[i].id)
 		current_player.team = ServerManager.connected_players[i].team
 		$Players.add_child(current_player)

@@ -12,11 +12,13 @@ signal basic_attack(dict)
 @export var player_class : ClassManager
 @export var multiplayer_synchromizer : MultiplayerSynchronizer
 
+@export var player_name : Label3D
+
 var team: int
 
 var movement_delta: float
 
-var mouse_positon: Vector3
+var mouse_position: Vector3
 
 func _ready() -> void:
 	multiplayer_synchromizer.set_multiplayer_authority(str(name).to_int())
@@ -34,19 +36,24 @@ func on_mouse_button_0_pressed():
 
 func on_mouse_button_1_pressed():
 	var ray_result = screen_point_to_ray()
+	if ray_result == {}:
+		return
 	if str(ray_result.collider.name).is_valid_int():
 		if team == ray_result.collider.team:
-			set_movement_target(mouse_positon)
+			set_movement_target(mouse_position)
 		else:
+			if global_position.distance_to(ray_result.position) > player_class.loaded_player_class.basic_attack_range:
+#				TODO: get to max range of attack range
+				set_movement_target(ray_result.position)
 			basic_attack.emit(ray_result)
 	else:
-		set_movement_target(mouse_positon)
+		set_movement_target(mouse_position)
 
 func _physics_process(delta):
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
 	
-	mouse_positon = screen_point_to_ray().position if screen_point_to_ray() != {} else global_position
+	mouse_position = screen_point_to_ray().position if screen_point_to_ray() != {} else global_position
 	
 	if navigation_agent.is_navigation_finished():
 		return
@@ -64,9 +71,9 @@ func _physics_process(delta):
 func screen_point_to_ray():
 	var space_state = get_world_3d().direct_space_state
 	
-	var mouse_position = get_viewport().get_mouse_position()
-	var ray_origin = camera.project_ray_origin(mouse_position)
-	var ray_end = ray_origin + camera.project_ray_normal(mouse_position) * 2000
+	var mouse = get_viewport().get_mouse_position()
+	var ray_origin = camera.project_ray_origin(mouse)
+	var ray_end = ray_origin + camera.project_ray_normal(mouse) * 2000
 	
 	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	ray_query.collide_with_areas = true

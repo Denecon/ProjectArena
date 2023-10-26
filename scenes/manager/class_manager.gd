@@ -28,23 +28,25 @@ func on_basic_attack(dict):
 
 func on_ability_1_pressed():
 	var position = player_owner.global_position + Vector3(0,3,0)
-	var direction = (player_owner.mouse_positon - position).normalized()
+	var direction = (player_owner.mouse_position - position).normalized()
 	activate_ability_1.rpc(player_owner.team, position, direction)
 
 func on_ability_2_pressed():
 	var position = player_owner.global_position + Vector3(0,3,0)
-	var direction = (player_owner.mouse_positon - position).normalized()
+	var direction = (player_owner.mouse_position - position).normalized()
 	activate_ability_2.rpc(player_owner.team, position, direction)
 
 func on_ability_3_pressed():
 	var position = player_owner.global_position + Vector3(0,3,0)
-	var direction = (player_owner.mouse_positon - position).normalized()
+	var direction = (player_owner.mouse_position - position).normalized()
 	activate_ability_3.rpc(player_owner.team, position, direction)
 
 func on_ability_4_pressed():
 	var position = player_owner.global_position + Vector3(0,3,0)
-	var direction = (player_owner.mouse_positon - position).normalized()
+	var direction = (player_owner.mouse_position - position).normalized()
 	activate_ability_4.rpc(player_owner.team, position, direction)
+
+#TODO: Change to Ability array and send index
 
 @rpc("any_peer", "call_local")
 func activate_ability_1(team, position, direction):
@@ -53,6 +55,7 @@ func activate_ability_1(team, position, direction):
 	ability.hit_box.team = team
 	ability.global_position = position
 	ability.direction = direction
+	ability.fire()
 
 @rpc("any_peer", "call_local")
 func activate_ability_2(team, position, direction):
@@ -61,6 +64,7 @@ func activate_ability_2(team, position, direction):
 	ability.hit_box.team = team
 	ability.global_position = position
 	ability.direction = direction
+	ability.fire()
 
 @rpc("any_peer", "call_local")
 func activate_ability_3(team, position, direction):
@@ -69,6 +73,7 @@ func activate_ability_3(team, position, direction):
 	ability.hit_box.team = team
 	ability.global_position = position
 	ability.direction = direction
+	ability.fire()
 
 @rpc("any_peer", "call_local")
 func activate_ability_4(team, position, direction):
@@ -77,3 +82,4 @@ func activate_ability_4(team, position, direction):
 	ability.hit_box.team = team
 	ability.global_position = position
 	ability.direction = direction
+	ability.fire()

@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends RigidBody3D
 class_name BaseProjectileAbility
 
 var direction: Vector3

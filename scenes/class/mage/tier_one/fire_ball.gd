@@ -1,6 +1,10 @@
 extends BaseProjectileAbility
 
-func _physics_process(delta):
+@export var set_speed: int
+
+func _ready():
+	speed = set_speed
+
+func fire():
 	direction.y = 0
-	velocity = direction * speed
-	move_and_slide()
+	apply_impulse(direction * speed)

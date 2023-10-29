@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg48ew3bg770a"]
+
+[ext_resource type="Script" path="res://scenes/manager/server_manager.gd" id="1_gcxmx"]
+[ext_resource type="PackedScene" uid="uid://d3tlfjegls3xe" path="res://scenes/main/main.tscn" id="2_c7tc2"]
+
+[node name="ServerManager" type="Node"]
+script = ExtResource("1_gcxmx")
+scene = ExtResource("2_c7tc2")

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cdl3mhfqsr32d"]
+
+[node name="ImpactComponent" type="Area3D"]
+collision_layer = 0

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5rs1wbcjju8e"]
+
+[ext_resource type="Script" path="res://scenes/class/buff_ability.gd" id="1_w7joo"]
+
+[node name="BattleCry" type="Node3D"]
+script = ExtResource("1_w7joo")
+buff_duration = 5.0
+buff_movement_speed = 5.0
+buff_shield = 30

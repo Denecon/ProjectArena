@@ -1,11 +1,15 @@
 extends ProjectileAbility
+class_name WaveProjectileAbility
 
 @export var pivot: Marker3D
+
 
 @export var max_size: float
 @export_range(0, 1) var scale_speed: float
 
+
 var fired = false
+
 
 func _physics_process(delta):
 	if not fired:
@@ -17,6 +21,7 @@ func _physics_process(delta):
 		hit_box.scale.x += scale_speed
 		impact.scale.x += scale_speed
 	position += direction * speed
+
 
 func on_impact(other_body):
 	if other_body == StaticBody3D:

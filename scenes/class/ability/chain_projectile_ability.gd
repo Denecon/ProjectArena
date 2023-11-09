@@ -1,9 +1,12 @@
 extends ProjectileAbility
 class_name ChainProjectileAbility
 
+
 @onready var particles := $Particles
 
+
 var players_hit = []
+
 
 func on_impact(other_body):
 	if players_hit.has(other_body):
@@ -21,6 +24,7 @@ func on_impact(other_body):
 	
 	if other_body == StaticBody3D:
 		queue_free()
+
 
 func disable_hitbox():
 	hit_box.set_disabled(true)

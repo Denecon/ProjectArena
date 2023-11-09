@@ -1,22 +1,28 @@
 extends Node3D
 class_name ProjectileAbility
 
+
 @export var cooldown: int = 10
+
 
 @export var projectile_life_time: Timer
 @export var life_time: float = 0.3
 @export_range(0, 1) var speed: float = 1
+
 
 @export var damage : int = 10
 @export var stun_time : int = 0
 @export_range(0, 0.5) var slow_strenght: float = 0
 @export_range(0, 5) var slow_time: float = 0
 
+
 var direction: Vector3
+
 
 @export var mesh: MeshInstance3D
 @export var hit_box: HitboxComponent
 @export var impact: Area3D
+
 
 func _ready():
 	set_as_top_level(true)
@@ -31,8 +37,10 @@ func _ready():
 	hit_box.slow_time = slow_time
 	hit_box.stun_time = stun_time
 
+
 func _physics_process(delta):
 	position += direction * speed
+
 
 func on_impact(other_body):
 	queue_free()

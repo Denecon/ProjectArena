@@ -1,4 +1,6 @@
 extends SwingAbility
+class_name ProjectileSwingAbility
+
 
 func _physics_process(delta):
 	if not swinged:
@@ -6,6 +8,7 @@ func _physics_process(delta):
 		swinged = true
 	if fire:
 		position += direction * speed
+
 
 func end_swing():
 	set_as_top_level(true)

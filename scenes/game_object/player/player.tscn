@@ -53,8 +53,8 @@ player_heathbar = NodePath("HealthBar")
 max_health = 100.0
 health_ui = NodePath("../HealthBar")
 
-[node name="ClassManager" parent="." node_paths=PackedStringArray("player_owner") instance=ExtResource("3_8bb7k")]
-player_owner = NodePath("..")
+[node name="ClassManager" parent="." node_paths=PackedStringArray("_owner") instance=ExtResource("3_8bb7k")]
+_owner = NodePath("..")
 
 [node name="Name" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)

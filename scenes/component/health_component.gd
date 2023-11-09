@@ -1,14 +1,18 @@
 extends Node
 class_name HealthComponent
 
+
 signal died(value: int)
 signal health_changed
+
 
 @export var max_health: float = 10
 @export var health_ui: HealthBar
 
+
 var current_health
 var current_shield = 0
+
 
 func _ready():
 	current_health = max_health

@@ -26,6 +26,18 @@ func _input(event):
 	if event.is_action_pressed("mobility_button"):
 		emit_movement_pressed()
 
+func screen_point_to_ray():
+	var space_state = get_tree().get_first_node_in_group("Main").get_world_3d().direct_space_state
+	
+	var mouse = get_viewport().get_mouse_position()
+	var ray_origin = get_viewport().get_camera_3d().project_ray_origin(mouse)
+	var ray_end = ray_origin + get_viewport().get_camera_3d().project_ray_normal(mouse) * 2000
+	
+	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	ray_query.collide_with_areas = true
+	
+	return space_state.intersect_ray(ray_query)
+
 func emit_mouse_0():
 	mouse_0.emit()
 
@@ -42,5 +54,5 @@ func disconnect_player():
 	disconnect_input.emit()
 	ServerManager.disconnect_local_player()
 	ServerManager.disconnect_player.rpc(multiplayer.get_unique_id())
-	get_tree().root.get_node("JoinScreen").show()
+	get_tree().root.get_node("StartScreen").show()
 	get_tree().root.remove_child(get_tree().root.get_node("Main"))

@@ -78,7 +78,7 @@ func disconnect_player(id):
 @rpc("any_peer", "call_local")
 func start_game():
 	get_tree().root.add_child(game_scene.instantiate())
-	get_tree().get_first_node_in_group("LobbyScreen").hide()
+	get_tree().get_first_node_in_group("LobbyScreen").queue_free()
 
 
 @rpc("any_peer", "call_local")

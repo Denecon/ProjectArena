@@ -1,14 +1,19 @@
 extends Node
 class_name BaseClass
 
+
 @export var ability_array : Array[PackedScene]
+
 
 var loaded_ability_array: Array[PackedScene]
 @export var loaded_movement: PackedScene
 
+
 var basic_attack_range = 0
 
+
 var basic_attack : PackedScene
+
 
 func load_abilities(list: Array[int]):
 	basic_attack_range = 10

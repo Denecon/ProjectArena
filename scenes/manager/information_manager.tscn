@@ -7,3 +7,4 @@ script = ExtResource("1_wffbo")
 _name = "Tester"
 _class = 1
 _team = 1
+_abilities = Array[int]([0, 1, 2, 3])

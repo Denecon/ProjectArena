@@ -1,7 +1,9 @@
 extends ProjectileAbility
 class_name AOEProjectileAbility
 
+
 @onready var particles := $Particles
+
 
 func on_impact(other_body):
 	hit_box.set_disabled(false)
@@ -14,6 +16,7 @@ func on_impact(other_body):
 	
 	if other_body == StaticBody3D:
 		queue_free()
+
 
 func disable_hitbox():
 	hit_box.set_disabled(true)

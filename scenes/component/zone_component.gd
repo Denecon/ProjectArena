@@ -11,7 +11,7 @@ var time :float = 0
 var players_not_in_zone = []
 
 
-var zone_damage = 0
+var zone_damage = 10
 
 func _ready():
 	zone_timer.connect("timeout", on_zone_time_timeout)
@@ -38,11 +38,9 @@ func _process(delta):
 		shrink_zone = false
 
 func on_body_entered(other_body):
-	print("enter")
 	players_not_in_zone.erase(other_body)
 
 func on_body_exited(other_body):
-	print("exit")
 	players_not_in_zone.append(other_body)
 
 func on_zone_time_timeout():
@@ -51,6 +49,8 @@ func on_zone_time_timeout():
 
 func on_zone_tick_timeout():
 	for player in players_not_in_zone:
+		if player == null:
+			return
 		if player.has_node("HealthComponent"):
 			player.health_component.damage(zone_damage)
 	zone_tick_timer.start(3)

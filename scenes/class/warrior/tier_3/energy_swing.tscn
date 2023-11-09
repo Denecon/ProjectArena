@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bawxn5opp8v7l"]
 
 [ext_resource type="PackedScene" uid="uid://c60d4xtonnhtl" path="res://scenes/component/hitbox_component.tscn" id="1_0o0ql"]
-[ext_resource type="Script" path="res://scenes/class/projectile_swing_ability.gd" id="1_6gl84"]
+[ext_resource type="Script" path="res://scenes/class/ability/projectile_swing_ability.gd" id="1_6gl84"]
 [ext_resource type="PackedScene" uid="uid://cdl3mhfqsr32d" path="res://scenes/component/impact_component.tscn" id="2_twuh5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkkrd"]
@@ -69,6 +69,7 @@ pivot = NodePath("Pivot")
 projectile_life_time = NodePath("Pivot/ProjectileLifeTime")
 life_time = 0.6
 speed = 0.5
+damage = 15
 mesh = NodePath("Pivot/Mesh")
 
 [node name="Pivot" type="Marker3D" parent="."]

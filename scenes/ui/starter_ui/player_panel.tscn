@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bph8emt722ple"]
+
+[ext_resource type="Script" path="res://scenes/ui/starter_ui/player_panel.gd" id="1_8ilu4"]
+
+[node name="PlayerPanel" type="Panel" node_paths=PackedStringArray("player_name", "player_class")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1068.0
+offset_bottom = -614.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ilu4")
+player_name = NodePath("Name/Label2")
+player_class = NodePath("Class/Label2")
+
+[node name="Name" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 56.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+text = "Name:"
+
+[node name="Label2" type="Label" parent="Name"]
+layout_mode = 2
+
+[node name="Class" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 30.0
+offset_right = 56.0
+offset_bottom = 56.0
+
+[node name="Label" type="Label" parent="Class"]
+layout_mode = 2
+text = "Class:"
+
+[node name="Label2" type="Label" parent="Class"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_top = 60.0
+offset_right = 56.0
+offset_bottom = 91.0
+text = "Ready"

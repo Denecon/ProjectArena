@@ -3,6 +3,9 @@ class_name Player
 
 signal basic_attack(dict)
 
+@export var canvas: CanvasLayer
+@export var ui: PackedScene
+
 @export var movement_speed: float = 4.0
 @onready var base_movement_speed = movement_speed
 @export var navigation_agent: NavigationAgent3D
@@ -29,6 +32,12 @@ func _ready() -> void:
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
+	
+	var ui_inst = ui.instantiate()
+	ui_inst.player_owner = self
+	ui_inst.class_manager = player_class
+	
+	canvas.add_child(ui_inst)
 	
 	InputManager.connect("mouse_0", on_mouse_button_0_pressed)
 	InputManager.connect("mouse_1", on_mouse_button_1_pressed)
@@ -63,7 +72,7 @@ func _physics_process(delta):
 	if not multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		return
 	
-	mouse_position = screen_point_to_ray().position if screen_point_to_ray() != {} else global_position
+	mouse_position = screen_point_to_ray().position if screen_point_to_ray().has("position") else global_position
 	
 	if navigation_agent.is_navigation_finished():
 		return

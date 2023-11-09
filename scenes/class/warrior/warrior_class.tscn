@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://csxwmmbk5yftg"]
+[gd_scene load_steps=7 format=3 uid="uid://csxwmmbk5yftg"]
 
 [ext_resource type="Script" path="res://scenes/class/base_class.gd" id="1_lcf2d"]
 [ext_resource type="PackedScene" uid="uid://cjj0fqi7jf6dv" path="res://scenes/class/warrior/tier_1/Swing.tscn" id="2_ps2ro"]
 [ext_resource type="PackedScene" uid="uid://2fa0m8h3753k" path="res://scenes/class/warrior/tier_2/bash.tscn" id="3_lt52y"]
 [ext_resource type="PackedScene" uid="uid://b5rs1wbcjju8e" path="res://scenes/class/warrior/tier_2/battle_cry.tscn" id="4_obnqr"]
 [ext_resource type="PackedScene" uid="uid://bawxn5opp8v7l" path="res://scenes/class/warrior/tier_3/energy_swing.tscn" id="5_fb0cy"]
+[ext_resource type="PackedScene" uid="uid://c8ef7kckvbrmk" path="res://scenes/class/mage/tier_0/teleport.tscn" id="6_vprqq"]
 
 [node name="WarriorClass" type="Node"]
 script = ExtResource("1_lcf2d")
 ability_array = Array[PackedScene]([ExtResource("2_ps2ro"), ExtResource("3_lt52y"), ExtResource("4_obnqr"), ExtResource("5_fb0cy")])
+loaded_movement = ExtResource("6_vprqq")

@@ -3,9 +3,10 @@ extends Node
 @export var adress = "127.0.0.1"
 @export var port = 27015
 
-@export var scene: PackedScene
+@export var game_scene: PackedScene
 
 var connected_players = {}
+signal connected_players_changed
 var connected_ready = 0
 
 var player_name: String
@@ -21,21 +22,26 @@ func _ready():
 	multiplayer.connection_failed.connect(connection_failed)
 
 func player_connected(id):
-	print("Player Connected: " + str(id))
+	print("Player Connected: " + str(id) + " Players joined: " + str(connected_players.size()))
 
 func player_disconnected(id):
 	print("Player Disconnected: " + str(id))
 	connected_players.erase(id)
+	
 	if "--server" in OS.get_cmdline_args():
 		connected_ready -= 1
+	
 	var players = get_tree().get_nodes_in_group("Player")
 	for player in players:
 		if player.name == str(id):
 			player.queue_free()
+	
 	if connected_players.size() == 0:
 		print("Reset Server")
+		
 		if get_tree().root.has_node("Main"):
 			get_tree().root.remove_child(get_tree().root.get_node("Main"))
+		
 		print("Server Ready")
 
 func connected_to_server():
@@ -55,12 +61,12 @@ func disconnect_player(id):
 
 @rpc("any_peer", "call_local")
 func start_game():
-	get_tree().root.add_child(scene.instantiate())
-	get_tree().get_first_node_in_group("JoinScreen").hide()
+	get_tree().root.add_child(game_scene.instantiate())
 
 @rpc("any_peer", "call_local")
 func ready_up():
 	connected_ready += 1
+	print(str(connected_ready) + " Player ready of the: " + str(connected_players.size()))
 	if connected_ready == connected_players.size():
 		start_game()
 
@@ -89,13 +95,17 @@ func host_game():
 	
 	multiplayer.set_multiplayer_peer(peer)
 	
-	print("Waitning For Players!")
+	connected_players_changed.emit()
+	
+	print("Waiting For Players!")
 
 func join_game():
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(adress, port)
 	if error != OK:
-		print("Join Failed: " + error)
+		print("Join Failed: " + str(error))
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
+	
+	connected_players_changed.emit()

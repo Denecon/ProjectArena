@@ -1,6 +1,8 @@
 extends Node3D
 class_name ProjectileAbility
 
+@export var cooldown: int = 10
+
 @export var projectile_life_time: Timer
 @export var life_time: float = 0.3
 @export_range(0, 1) var speed: float = 1
@@ -13,8 +15,8 @@ class_name ProjectileAbility
 var direction: Vector3
 
 @export var mesh: MeshInstance3D
-@onready var hit_box = $HitboxComponent as HitboxComponent
-@onready var impact = $ImpactComponent as Area3D
+@export var hit_box: HitboxComponent
+@export var impact: Area3D
 
 func _ready():
 	set_as_top_level(true)

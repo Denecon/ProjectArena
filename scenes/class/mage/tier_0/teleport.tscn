@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ef7kckvbrmk"]
+
+[ext_resource type="Script" path="res://scenes/class/ability/teleport_ability.gd" id="1_7c1vr"]
+
+[node name="Teleport" type="Node3D"]
+script = ExtResource("1_7c1vr")
+cooldown = 10
+max_distance = 20.0

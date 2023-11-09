@@ -5,4 +5,4 @@
 
 [node name="ServerManager" type="Node"]
 script = ExtResource("1_gcxmx")
-scene = ExtResource("2_c7tc2")
+game_scene = ExtResource("2_c7tc2")

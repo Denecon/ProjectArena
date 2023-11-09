@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://2fa0m8h3753k"]
 
-[ext_resource type="Script" path="res://scenes/class/swing_ability.gd" id="1_0l3r8"]
 [ext_resource type="PackedScene" uid="uid://c60d4xtonnhtl" path="res://scenes/component/hitbox_component.tscn" id="1_7gso5"]
+[ext_resource type="Script" path="res://scenes/class/ability/swing_ability.gd" id="1_wb5gh"]
 [ext_resource type="PackedScene" uid="uid://cdl3mhfqsr32d" path="res://scenes/component/impact_component.tscn" id="2_hqqm1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkkrd"]
@@ -64,10 +64,11 @@ _data = {
 }
 
 [node name="Bash" type="Node3D" node_paths=PackedStringArray("pivot", "projectile_life_time", "mesh")]
-script = ExtResource("1_0l3r8")
+script = ExtResource("1_wb5gh")
 pivot = NodePath("Pivot")
 projectile_life_time = NodePath("Pivot/ProjectileLifeTime")
-stun_time = 3
+damage = 5
+stun_time = 2
 mesh = NodePath("Pivot/Mesh")
 
 [node name="Pivot" type="Marker3D" parent="."]
@@ -75,20 +76,20 @@ mesh = NodePath("Pivot/Mesh")
 [node name="ProjectileLifeTime" type="Timer" parent="Pivot"]
 
 [node name="Mesh" type="MeshInstance3D" parent="Pivot"]
-transform = Transform3D(-2.10684e-07, 0, 0.534904, 0, 0.5, 0, -2.08313, 0, -5.96046e-08, 0, 0, -1.05615)
+transform = Transform3D(-3.00024e-07, 0, 0.534904, 0, 0.5, 0, -2.96647, 0, -5.96046e-08, 0, 0, -1.48552)
 material_override = SubResource("StandardMaterial3D_lkkrd")
 mesh = SubResource("SphereMesh_kucrd")
 skeleton = NodePath("../..")
 
 [node name="HitboxComponent" parent="Pivot" instance=ExtResource("1_7gso5")]
-transform = Transform3D(-2.63355e-08, 0, 1.06981, 0, 1, 0, -0.541664, 0, -1.19209e-07, 0, 0, -1.05615)
+transform = Transform3D(-3.75029e-08, 0, 1.06981, 0, 1, 0, -0.771354, 0, -1.19209e-07, 0, 0, -1.48552)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/HitboxComponent"]
 transform = Transform3D(3.8458, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_17ci7")
 
 [node name="ImpactComponent" parent="Pivot" instance=ExtResource("2_hqqm1")]
-transform = Transform3D(-2.63355e-08, 0, 1.06981, 0, 1, 0, -0.541664, 0, -1.19209e-07, 0, 0, -1.05615)
+transform = Transform3D(-3.75029e-08, 0, 1.06981, 0, 1, 0, -0.771354, 0, -1.19209e-07, 0, 0, -1.48552)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/ImpactComponent"]
 transform = Transform3D(3.8458, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://lu3rgdcqo0vs"]
+[gd_scene load_steps=13 format=3 uid="uid://lu3rgdcqo0vs"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_wwovv"]
+[ext_resource type="PackedScene" uid="uid://dyvt22gtpqm1v" path="res://scenes/ui/ability_cooldowns.tscn" id="2_g0ung"]
 [ext_resource type="PackedScene" uid="uid://c8602lx6fw3or" path="res://scenes/component/health_component.tscn" id="2_is44q"]
 [ext_resource type="PackedScene" uid="uid://dt4fe4yfvfheo" path="res://scenes/manager/class_manager.tscn" id="3_8bb7k"]
 [ext_resource type="PackedScene" uid="uid://clqmhkhhvtd3v" path="res://scenes/component/hurtbox_component.tscn" id="4_y8ous"]
@@ -29,9 +30,11 @@ properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent", "player_mesh", "camera", "player_class", "multiplayer_synchromizer", "health_component", "player_name", "player_hurtbox", "player_collision", "player_heathbar") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("canvas", "navigation_agent", "player_mesh", "camera", "player_class", "multiplayer_synchromizer", "health_component", "player_name", "player_hurtbox", "player_collision", "player_heathbar") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_wwovv")
+canvas = NodePath("CanvasLayer")
+ui = ExtResource("2_g0ung")
 movement_speed = 10.0
 navigation_agent = NodePath("NavigationAgent3D")
 player_mesh = NodePath("PlayerMesh")
@@ -43,6 +46,8 @@ player_name = NodePath("Name")
 player_hurtbox = NodePath("HurtboxComponent")
 player_collision = NodePath("CollisionShape3D")
 player_heathbar = NodePath("HealthBar")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_ui") instance=ExtResource("2_is44q")]
 max_health = 100.0

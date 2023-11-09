@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2c4emgqxv6r3"]
+[gd_scene load_steps=7 format=3 uid="uid://c2c4emgqxv6r3"]
 
 [ext_resource type="Script" path="res://scenes/class/base_class.gd" id="1_frii2"]
 [ext_resource type="PackedScene" uid="uid://b0gcx0gitpwmw" path="res://scenes/class/mage/tier_1/fire_ball.tscn" id="2_uksc6"]
 [ext_resource type="PackedScene" uid="uid://corsjfn8q36uj" path="res://scenes/class/mage/tier_2/fire_blast.tscn" id="3_xtkm1"]
 [ext_resource type="PackedScene" uid="uid://dew8xkqe4bg8y" path="res://scenes/class/mage/tier_1/ice_missile.tscn" id="4_kmlr0"]
-[ext_resource type="PackedScene" uid="uid://dfkossactgsla" path="res://scenes/class/mage/tier_3/chain_lighting.tscn" id="5_y27nr"]
+[ext_resource type="PackedScene" uid="uid://b7hychs7yonxc" path="res://scenes/class/mage/tier_2/ice_wave.tscn" id="5_ewnxs"]
+[ext_resource type="PackedScene" uid="uid://c8ef7kckvbrmk" path="res://scenes/class/mage/tier_0/teleport.tscn" id="6_2mm3b"]
 
 [node name="MageClass" type="Node"]
 script = ExtResource("1_frii2")
-ability_array = Array[PackedScene]([ExtResource("2_uksc6"), ExtResource("3_xtkm1"), ExtResource("4_kmlr0"), ExtResource("5_y27nr")])
+ability_array = Array[PackedScene]([ExtResource("2_uksc6"), ExtResource("3_xtkm1"), ExtResource("4_kmlr0"), ExtResource("5_ewnxs")])
+loaded_movement = ExtResource("6_2mm3b")

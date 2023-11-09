@@ -1,6 +1,8 @@
 extends Node3D
 class_name SwingAbility
 
+@export var cooldown: int = 10
+
 @export var pivot: Marker3D
 @export var projectile_life_time: Timer
 @export var life_time: float = 0.3
@@ -23,7 +25,7 @@ func _ready():
 	projectile_life_time.connect("timeout", queue_free)
 	projectile_life_time.start(life_time)
 	
-	impact.connect("body_entered", on_impact)
+	
 	
 	hit_box.damage = damage
 	hit_box.stun_time = stun_time
@@ -34,7 +36,7 @@ func _physics_process(delta):
 		swinged = true
 
 func end_swing():
-	print("not implemented")
+	impact.connect("body_entered", on_impact)
 
 func on_impact(other_body):
 	queue_free()

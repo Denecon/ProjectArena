@@ -3,6 +3,7 @@ extends Node
 signal mouse_0
 signal mouse_1
 signal abililty_pressed(int)
+signal movement_pressed
 
 signal disconnect_input
 
@@ -22,6 +23,8 @@ func _input(event):
 		emit_abililty_pressed(2)
 	if event.is_action_pressed("ability_button_4"):
 		emit_abililty_pressed(3)
+	if event.is_action_pressed("mobility_button"):
+		emit_movement_pressed()
 
 func emit_mouse_0():
 	mouse_0.emit()
@@ -31,6 +34,9 @@ func emit_mouse_1():
 
 func emit_abililty_pressed(ability: int):
 	abililty_pressed.emit(ability)
+
+func emit_movement_pressed():
+	movement_pressed.emit()
 
 func disconnect_player():
 	disconnect_input.emit()

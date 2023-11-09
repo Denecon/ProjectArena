@@ -9,4 +9,5 @@ func _physics_process(delta):
 
 func end_swing():
 	set_as_top_level(true)
+	impact.connect("body_entered", on_impact)
 	fire = true

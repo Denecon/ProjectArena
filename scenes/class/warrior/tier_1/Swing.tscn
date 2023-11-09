@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjj0fqi7jf6dv"]
 
-[ext_resource type="Script" path="res://scenes/class/swing_ability.gd" id="1_oac22"]
+[ext_resource type="Script" path="res://scenes/class/ability/swing_ability.gd" id="1_oac22"]
 [ext_resource type="PackedScene" uid="uid://c60d4xtonnhtl" path="res://scenes/component/hitbox_component.tscn" id="2_xwl7v"]
 [ext_resource type="PackedScene" uid="uid://cdl3mhfqsr32d" path="res://scenes/component/impact_component.tscn" id="3_2vsvm"]
 
@@ -65,8 +65,10 @@ _data = {
 
 [node name="Swing" type="Node3D" node_paths=PackedStringArray("pivot", "projectile_life_time", "mesh")]
 script = ExtResource("1_oac22")
+cooldown = 2
 pivot = NodePath("Pivot")
 projectile_life_time = NodePath("Pivot/ProjectileLifeTime")
+damage = 15
 mesh = NodePath("Pivot/Mesh")
 
 [node name="Pivot" type="Marker3D" parent="."]

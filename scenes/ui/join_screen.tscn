@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhhkwr20e7sgw"]
+
+[ext_resource type="Script" path="res://scenes/ui/join_screen.gd" id="1_qskmx"]
+[ext_resource type="PackedScene" uid="uid://c65upe8ngfy5r" path="res://scenes/ui/starter_ui/lobby_screen.tscn" id="2_hc723"]
+
+[node name="JoinScreen" type="Control" node_paths=PackedStringArray("host_btn", "join_btn", "ready_up_btn", "server_ip", "server_port", "player_name", "player_class", "player_team") groups=["JoinScreen"]]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qskmx")
+lobby_scene = ExtResource("2_hc723")
+host_btn = NodePath("VBoxContainer/HBoxContainer/Host")
+join_btn = NodePath("VBoxContainer/HBoxContainer/Join")
+ready_up_btn = NodePath("VBoxContainer/HBoxContainer/ReadyUp")
+server_ip = NodePath("VBoxContainer/Ip/LineEdit")
+server_port = NodePath("VBoxContainer/Port/LineEdit")
+player_name = NodePath("VBoxContainer/Name/LineEdit")
+player_class = NodePath("VBoxContainer/Class/OptionButton")
+player_team = NodePath("VBoxContainer/Team/OptionButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -105.0
+offset_right = 95.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Name"]
+layout_mode = 2
+text = "Name: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Name"]
+layout_mode = 2
+text = "PlayTester"
+
+[node name="Class" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Class"]
+layout_mode = 2
+text = "Class:"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Class"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 2
+selected = 0
+popup/item_0/text = "Mage"
+popup/item_0/id = 0
+popup/item_1/text = "Warrior"
+popup/item_1/id = 1
+
+[node name="Team" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Team"]
+layout_mode = 2
+text = "Team:"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Team"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 4
+selected = 1
+popup/item_0/text = "Select Team"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "Spectator"
+popup/item_3/id = 3
+
+[node name="Ip" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Ip"]
+layout_mode = 2
+text = "Server:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Ip"]
+layout_mode = 2
+text = "socializing.be"
+placeholder_text = "socializing.be"
+
+[node name="Port" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Port"]
+layout_mode = 2
+text = "Port:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Port"]
+layout_mode = 2
+text = "27015"
+placeholder_text = "27015"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="ReadyUp" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ready Up"

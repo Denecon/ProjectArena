@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq5ybs6rw0vyh"]
+
+[ext_resource type="Script" path="res://scenes/component/zone_component.gd" id="1_ch4rk"]
+[ext_resource type="PackedScene" uid="uid://ct1286rlyof3n" path="res://scenes/models/mvp_zone.tscn" id="2_xo464"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2u58e"]
+height = 100.0
+radius = 100.0
+
+[node name="ZoneComponent" type="Area3D" node_paths=PackedStringArray("zone_timer", "zone_tick_timer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0976, -1.52588e-05, 3.68747)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_ch4rk")
+zone_timer = NodePath("ZoneTime")
+zone_tick_timer = NodePath("ZoneTickTime")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("CylinderShape3D_2u58e")
+
+[node name="mvp_zone" parent="." instance=ExtResource("2_xo464")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.4777, 0)
+
+[node name="ZoneTime" type="Timer" parent="."]
+autostart = true
+
+[node name="ZoneTickTime" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

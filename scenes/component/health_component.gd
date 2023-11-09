@@ -5,16 +5,21 @@ signal died(value: int)
 signal health_changed
 
 @export var max_health: float = 10
-var current_health
+@export var health_ui: HealthBar
 
+var current_health
+var current_shield = 0
 
 func _ready():
 	current_health = max_health
 
 
 func damage(value: float):
+	if current_shield != 0:
+		value -= current_shield
 	current_health = max(current_health - value, 0)
 	health_changed.emit()
+	health_ui.update(current_health)
 	Callable(check_death).call_deferred()
 
 
@@ -26,8 +31,5 @@ func get_health_precent():
 
 func check_death():
 	if current_health == 0:
-		if owner.name.contains("Player"):
-			died.emit(owner.player_index)
-		else:
-			died.emit(owner.kill_value)
-		owner.queue_free()
+		died.emit(owner.team)
+		owner.set_spectator_mode()

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhhkwr20e7sgw"]
+[gd_scene load_steps=3 format=3 uid="uid://d2g3n4yck5dxh"]
 
-[ext_resource type="Script" path="res://scenes/ui/join_screen.gd" id="1_qskmx"]
-[ext_resource type="PackedScene" uid="uid://c65upe8ngfy5r" path="res://scenes/ui/starter_ui/lobby_screen.tscn" id="2_hc723"]
+[ext_resource type="Script" path="res://scenes/ui/old_join_screen.gd" id="1_qskmx"]
+[ext_resource type="PackedScene" uid="uid://d3tlfjegls3xe" path="res://scenes/main/main.tscn" id="2_gfi3v"]
 
 [node name="JoinScreen" type="Control" node_paths=PackedStringArray("host_btn", "join_btn", "ready_up_btn", "server_ip", "server_port", "player_name", "player_class", "player_team") groups=["JoinScreen"]]
 layout_mode = 3
@@ -13,7 +13,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qskmx")
-lobby_scene = ExtResource("2_hc723")
+lobby_scene = ExtResource("2_gfi3v")
 host_btn = NodePath("VBoxContainer/HBoxContainer/Host")
 join_btn = NodePath("VBoxContainer/HBoxContainer/Join")
 ready_up_btn = NodePath("VBoxContainer/HBoxContainer/ReadyUp")
@@ -96,7 +96,7 @@ text = "Server:"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Ip"]
 layout_mode = 2
-text = "socializing.be"
+text = "127.0.0.1"
 placeholder_text = "socializing.be"
 
 [node name="Port" type="HBoxContainer" parent="VBoxContainer"]

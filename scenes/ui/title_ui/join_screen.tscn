@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://dam56usk3f3r4"]
+
+[ext_resource type="Script" path="res://scenes/ui/title_ui/join_screen.gd" id="1_3w5uc"]
+[ext_resource type="PackedScene" uid="uid://c65upe8ngfy5r" path="res://scenes/ui/lobby_ui/lobby_screen.tscn" id="2_lom31"]
+
+[node name="JoinScreen" type="Control" node_paths=PackedStringArray("server_ip", "server_port", "back_btn", "join_btn") groups=["JoinScreen"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3w5uc")
+lobby_scene = ExtResource("2_lom31")
+server_ip = NodePath("VBoxContainer/IP/IPLineEdit")
+server_port = NodePath("VBoxContainer/Port/PortLineEdit")
+back_btn = NodePath("VBoxContainer/HBoxContainer/Back")
+join_btn = NodePath("VBoxContainer/HBoxContainer/Join")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -65.5
+offset_right = 111.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IP" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/IP"]
+layout_mode = 2
+text = "Server:"
+
+[node name="IPLineEdit" type="LineEdit" parent="VBoxContainer/IP"]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "socializing.be"
+expand_to_text_length = true
+
+[node name="Port" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Port"]
+layout_mode = 2
+text = "Port:"
+
+[node name="PortLineEdit" type="LineEdit" parent="VBoxContainer/Port"]
+layout_mode = 2
+text = "27015"
+placeholder_text = "27015"
+expand_to_text_length = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Join" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Join"

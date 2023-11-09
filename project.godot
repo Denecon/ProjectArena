@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjectArena"
-run/main_scene="res://scenes/ui/join_screen.tscn"
+run/main_scene="res://scenes/ui/title_ui/start_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
@@ -28,6 +28,7 @@ aseprite_executable_path="D:\\Steam\\steamapps\\common\\Aseprite\\aseprite.exe"
 
 ServerManager="*res://scenes/manager/server_manager.tscn"
 InputManager="*res://scenes/manager/input_manager.gd"
+InformationManager="*res://scenes/manager/information_manager.tscn"
 
 [debug]
 

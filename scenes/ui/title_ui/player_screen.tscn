@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccfuf57oj7km7"]
+
+[ext_resource type="Script" path="res://scenes/ui/title_ui/player_screen.gd" id="1_n0tao"]
+
+[node name="PlayerScreen" type="Control" node_paths=PackedStringArray("player_name", "player_class", "player_team", "cancel_btn", "save_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n0tao")
+player_name = NodePath("VBoxContainer/Name/NameLineEdit")
+player_class = NodePath("VBoxContainer/Class/ClassOptionButton")
+player_team = NodePath("VBoxContainer/Team/TeamOptionButton")
+cancel_btn = NodePath("VBoxContainer/HBoxContainer/Cancel")
+save_btn = NodePath("VBoxContainer/HBoxContainer/Save")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -105.0
+offset_right = 167.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Name"]
+layout_mode = 2
+text = "Name: "
+
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer/Name"]
+layout_mode = 2
+text = "PlayTester"
+expand_to_text_length = true
+
+[node name="Class" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Class"]
+layout_mode = 2
+text = "Class:"
+
+[node name="ClassOptionButton" type="OptionButton" parent="VBoxContainer/Class"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 2
+selected = 0
+popup/item_0/text = "Mage"
+popup/item_0/id = 0
+popup/item_1/text = "Warrior"
+popup/item_1/id = 1
+
+[node name="Team" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Team"]
+layout_mode = 2
+text = "Team:"
+
+[node name="TeamOptionButton" type="OptionButton" parent="VBoxContainer/Team"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 4
+selected = 1
+popup/item_0/text = "Select Team"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "Spectator"
+popup/item_3/id = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"

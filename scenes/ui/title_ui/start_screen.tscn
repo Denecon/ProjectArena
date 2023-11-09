@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bumhexidj1bge"]
+
+[ext_resource type="Script" path="res://scenes/ui/title_ui/start_screen.gd" id="1_58t53"]
+[ext_resource type="PackedScene" uid="uid://c65upe8ngfy5r" path="res://scenes/ui/lobby_ui/lobby_screen.tscn" id="2_mk2gi"]
+[ext_resource type="PackedScene" uid="uid://dam56usk3f3r4" path="res://scenes/ui/title_ui/join_screen.tscn" id="3_yyph4"]
+[ext_resource type="PackedScene" uid="uid://ccfuf57oj7km7" path="res://scenes/ui/title_ui/player_screen.tscn" id="4_syw37"]
+
+[node name="StartScreen" type="Control" node_paths=PackedStringArray("host_btn", "join_btn", "player_btn", "quit_btn") groups=["StartScreen"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_58t53")
+host_screen = ExtResource("2_mk2gi")
+join_screen = ExtResource("3_yyph4")
+player_screen = ExtResource("4_syw37")
+host_btn = NodePath("VBoxContainer/Host")
+join_btn = NodePath("VBoxContainer/Join")
+player_btn = NodePath("VBoxContainer/Player")
+quit_btn = NodePath("VBoxContainer/Quit")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -50.5
+offset_right = 50.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host Screen"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join Screen"
+
+[node name="Player" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Player Screen"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"

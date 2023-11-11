@@ -3,12 +3,10 @@ class_name HealthComponent
 
 
 signal died(value: int)
-signal health_changed
+signal health_changed(value: int)
 
 
 @export var max_health: float = 10
-@export var health_ui: HealthBar
-
 
 var current_health
 var current_shield = 0
@@ -22,8 +20,7 @@ func damage(value: float):
 	if current_shield != 0:
 		value -= current_shield
 	current_health = max(current_health - value, 0)
-	health_changed.emit()
-	health_ui.update(current_health)
+	health_changed.emit(current_health)
 	Callable(check_death).call_deferred()
 
 

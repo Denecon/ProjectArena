@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dyvt22gtpqm1v"]
 
-[ext_resource type="Script" path="res://scenes/ui/ability_cooldowns.gd" id="1_moukt"]
+[ext_resource type="Script" path="res://scenes/ui/player_ui/ability_cooldowns.gd" id="1_gkkbp"]
 
 [node name="AbilityCooldowns" type="Control" node_paths=PackedStringArray("ability_1", "ability_2", "ability_3", "ability_4", "mobility")]
 layout_mode = 3
@@ -8,7 +8,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
-script = ExtResource("1_moukt")
+script = ExtResource("1_gkkbp")
 ability_1 = NodePath("VBoxContainer/Ability1/Ability1Time")
 ability_2 = NodePath("VBoxContainer/Ability2/Ability2Time")
 ability_3 = NodePath("VBoxContainer/Ability3/Ability3Time")

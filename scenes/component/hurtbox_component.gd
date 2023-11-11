@@ -13,6 +13,9 @@ func on_area_entered(hitbox_component: HitboxComponent):
 	if not owner.has_node("HealthComponent"):
 		return
 	
+	if has_node("HitParticles"):
+		$HitParticles.emitting = true
+	
 	if hitbox_component.slow_time != 0:
 		health_component.owner.slow_movement_speed(hitbox_component.slow_time, hitbox_component.slow_strenght)
 	if hitbox_component.stun_time != 0:

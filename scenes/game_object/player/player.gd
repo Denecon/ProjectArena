@@ -6,7 +6,8 @@ signal basic_attack(dict)
 
 
 @export var canvas: CanvasLayer
-@export var ui: PackedScene
+@export var health_bar_ui: PackedScene
+@export var ability_cooldown_ui: PackedScene
 
 
 @export var movement_speed: float = 4.0
@@ -61,8 +62,8 @@ func set_multiplayer():
 
 func get_muliplayer_autority() -> bool:
 	if multiplayer_synchromizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		return false
-	return true
+		return true
+	return false
 
 
 func connect_input():
@@ -107,12 +108,14 @@ func on_mouse_button_1_pressed():
 
 
 func set_ui():
-	var ui_inst = ui.instantiate()
-	ui_inst.player_owner = self
-	ui_inst.class_manager = player_class
+	var ability_cooldown_ui_inst = ability_cooldown_ui.instantiate() as AbilityCooldowns
+	ability_cooldown_ui_inst.player_owner = self
+	ability_cooldown_ui_inst.class_manager = player_class
+	canvas.add_child(ability_cooldown_ui_inst)
 	
-	canvas.add_child(ui_inst)
-
+	var health_bar_ui_inst = health_bar_ui.instantiate() as HealthBarUI
+	health_bar_ui_inst._owner = self
+	canvas.add_child(health_bar_ui_inst)
 
 func move_player():
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
@@ -145,7 +148,8 @@ func stun(stun_time):
 func on_mobility_impairment_timer_timeout():
 	if is_stuned:
 		is_stuned = false
-	health_component.current_shield = 0
+#	if has_node("HealthComponent"):
+#		health_component.current_shield = 0
 	movement_speed = base_movement_speed
 
 

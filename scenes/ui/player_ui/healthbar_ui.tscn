@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://3amxwb2wrvyb"]
+
+[ext_resource type="Script" path="res://scenes/ui/player_ui/healthbar_ui.gd" id="1_doewr"]
+[ext_resource type="PackedScene" uid="uid://c8t21tf7onu04" path="res://scenes/ui/player_ui/health_bar.tscn" id="2_4b3q1"]
+
+[node name="HealthbarUi" type="Control" node_paths=PackedStringArray("bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_doewr")
+bar = NodePath("HealthBar")
+
+[node name="Empty" parent="." instance=ExtResource("2_4b3q1")]
+modulate = Color(0.615686, 0.152941, 0.152941, 1)
+layout_mode = 0
+value = 100.0
+script = null
+
+[node name="HealthBar" parent="." instance=ExtResource("2_4b3q1")]
+layout_mode = 0

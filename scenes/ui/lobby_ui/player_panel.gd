@@ -15,3 +15,4 @@ func _ready():
 
 func on_ready_btn_pressed():
 	ServerManager.ready_up.rpc()
+	ready_btn.disabled = true

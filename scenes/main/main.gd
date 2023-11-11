@@ -10,16 +10,17 @@ func _ready():
 	spawn_players()
 
 func spawn_players():
-	for i in ServerManager.connected_players:
+	for index in ServerManager.connected_players:
 		var _player = player_scene.instantiate() as Player
+		_player.name = str(ServerManager.connected_players[index].id)
 		$Players.add_child(_player)
 		
-		var team = ServerManager.connected_players[i].team
+		var team = ServerManager.connected_players[index].team
 		if team == 0 or team == 3:
 			set_player_as_spectator(_player)
 			return
 		
-		set_player(_player, team, i)
+		set_player(_player, team, index)
 		if team == 1:
 			join_team_1(_player)
 		if team == 2:
@@ -33,7 +34,6 @@ func set_player_as_spectator(_player):
 
 func set_player(_player, team, index):
 	_player.player_name.text = ServerManager.connected_players[index].name
-	_player.name = str(ServerManager.connected_players[index].id)
 	_player.team = team
 	
 	_player.health_component.connect("died", on_player_died)

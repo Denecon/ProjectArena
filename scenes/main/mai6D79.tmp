@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3tlfjegls3xe"]
+[gd_scene load_steps=11 format=3 uid="uid://d3tlfjegls3xe"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_3hpfk"]
 [ext_resource type="PackedScene" uid="uid://lu3rgdcqo0vs" path="res://scenes/game_object/player/player.tscn" id="2_d24o0"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://csxwmmbk5yftg" path="res://scenes/class/warrior/warrior_class.tscn" id="4_pnkxy"]
 [ext_resource type="PackedScene" uid="uid://dx7spaich7v6q" path="res://scenes/models/mvp_map.tscn" id="5_evbyb"]
 [ext_resource type="PackedScene" uid="uid://bq5ybs6rw0vyh" path="res://scenes/component/zone_component.tscn" id="5_mcqun"]
-[ext_resource type="PackedScene" uid="uid://dtqswasqsnhq8" path="res://scenes/game_object/dummy/dummy.tscn" id="6_veage"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d6hod"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,12 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.65, 0)
 
 [node name="Dummies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.65, 0)
-
-[node name="Dummy" parent="Dummies" instance=ExtResource("6_veage")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00927, -0.0119448, 0.391901)
-
-[node name="Dummy2" parent="Dummies" instance=ExtResource("6_veage")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86283, 0, 5.09836)
 
 [node name="ZoneComponent" parent="." instance=ExtResource("5_mcqun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

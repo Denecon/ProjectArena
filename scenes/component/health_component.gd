@@ -33,4 +33,5 @@ func get_health_precent():
 func check_death():
 	if current_health == 0:
 		died.emit(owner.team)
-		owner.set_spectator_mode()
+		if owner.has_method("set_spectator_mode"):
+			owner.set_spectator_mode()

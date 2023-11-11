@@ -91,11 +91,11 @@ func activate_ability(ability_id, hit_layer, impact_mask, position, direction):
 	if ability is BuffAbility:
 		_owner.buff(ability.buff_duration, ability.buff_movement_speed, ability.buff_shield)
 	else:
+		ability.hit_box.set_collision_layer_value(hit_layer, true)
+		ability.impact.set_collision_mask_value(impact_mask, true)
 		_owner.add_child(ability)
 		ability.global_position = position
 		ability.direction = direction
-		ability.hit_box.set_collision_layer_value(hit_layer, true)
-		ability.impact.set_collision_mask_value(impact_mask, true)
 
 
 func on_movement_pressed():

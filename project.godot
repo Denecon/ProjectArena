@@ -32,6 +32,7 @@ InformationManager="*res://scenes/manager/information_manager.tscn"
 
 [debug]
 
+gdscript/warnings/unused_private_class_variable=0
 gdscript/warnings/unused_parameter=0
 
 [display]

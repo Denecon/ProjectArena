@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/title_ui/player_screen.gd" id="1_n0tao"]
 
-[node name="PlayerScreen" type="Control" node_paths=PackedStringArray("player_name", "player_class", "player_team", "cancel_btn", "save_btn")]
+[node name="PlayerScreen" type="Control" node_paths=PackedStringArray("player_name", "player_class", "player_team", "skill_1", "skill_2", "skill_3", "skill_4", "cancel_btn", "save_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,10 @@ script = ExtResource("1_n0tao")
 player_name = NodePath("VBoxContainer/Name/NameLineEdit")
 player_class = NodePath("VBoxContainer/Class/ClassOptionButton")
 player_team = NodePath("VBoxContainer/Team/TeamOptionButton")
+skill_1 = NodePath("VBoxContainer/Skills/SkillOptionButton1")
+skill_2 = NodePath("VBoxContainer/Skills/SkillOptionButton2")
+skill_3 = NodePath("VBoxContainer/Skills/SkillOptionButton3")
+skill_4 = NodePath("VBoxContainer/Skills/SkillOptionButton4")
 cancel_btn = NodePath("VBoxContainer/HBoxContainer/Cancel")
 save_btn = NodePath("VBoxContainer/HBoxContainer/Save")
 
@@ -60,6 +64,78 @@ popup/item_0/text = "Mage"
 popup/item_0/id = 0
 popup/item_1/text = "Warrior"
 popup/item_1/id = 1
+
+[node name="Skills" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Skills"]
+layout_mode = 2
+text = "Skills:"
+
+[node name="SkillOptionButton1" type="OptionButton" parent="VBoxContainer/Skills"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 5
+selected = 0
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
+
+[node name="SkillOptionButton2" type="OptionButton" parent="VBoxContainer/Skills"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 5
+selected = 0
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
+
+[node name="SkillOptionButton3" type="OptionButton" parent="VBoxContainer/Skills"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 5
+selected = 0
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
+
+[node name="SkillOptionButton4" type="OptionButton" parent="VBoxContainer/Skills"]
+layout_mode = 2
+tooltip_text = "Select Team"
+item_count = 5
+selected = 0
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
 
 [node name="Team" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
